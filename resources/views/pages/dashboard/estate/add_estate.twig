@@ -1,0 +1,281 @@
+{% extends 'layouts/app_admin.twig' %}
+
+{% block main_content %}
+    <!-- START SECTION DASHBOARD -->
+    <section class="user-page section-padding py-5" xmlns="http://www.w3.org/1999/html"
+             xmlns="http://www.w3.org/1999/html">
+        <div class="container-fluid">
+            <div class="row">
+                {% include 'components/menu/menu_left_admin.twig' %}
+        <div class="col-lg-9 col-md-12 col-xs-12 royal-add-property-area section_100">
+            {% include 'components/status.twig' %}
+            <form action="{{ url_for('add_estate') }}" enctype="multipart/form-data" method="post">
+                {{ csrf() | raw }}
+            <div class="single-add-property">
+                <h3>Ajouter un bien</h3>
+                <div class="property-form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                               <div class="form-group">
+                                    <label for="title">Désignation</label>
+                                    <input type="text"  class="form-control{{ errors.designation ? ' is-invalid' : '' }}" name="designation" id="designation" placeholder="Donnez un nom à ce bien">
+                                    <i class="icon_mail_alt"></i>
+                                    {% if errors.designation %}
+                                        <div class="invalid-feedback"> {{ errors.designation | first }}</div>
+                                    {% endif %}
+                               </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="estate_status" class="form-control-label">Situation</label>
+                                    <select name="estate_status" class="form-control">
+                                        <option disabled selected value="0"> -- Choisir une situation -- </option>
+                                        {% for status in estate_statuses %}
+                                            <option value={{ status.id }}>{{ status.estate_status_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="estate_type" class="form-control-label">Type</label>
+                                    <select name="estate_type" class="form-control">
+                                        <option disabled selected value="0"> -- Choisir un type -- </option>
+                                        {% for type in estate_types %}
+                                            <option value={{ type.id }}>{{ type.estate_type_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="area">Prix d'achat</label>
+                                    <input type="text" name="price" placeholder="€" id="price" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="area">Surface</label>
+                                    <input type="text" name="area" placeholder="m²" id="area" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="rooms" class="form-control-label">Pièces</label>
+                                    <select name="rooms" class="form-control">
+                                        <option disabled selected value="0"> -- Nombre de pièces -- </option>
+                                        {% for room in rooms %}
+                                            <option value={{ room.rooms_number }}>{{ room.rooms_number }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="bedrooms" class="form-control-label">Chambres</label>
+                                    <select name="bedrooms" class="form-control">
+                                        <option disabled selected value="0"> -- Nombre de chambres -- </option>
+                                        {% for bedroom in bedrooms %}
+                                            <option value={{ bedroom.bedrooms_number }}>{{ bedroom.bedrooms_number }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="bathrooms" class="form-control-label">Salle de bain</label>
+                                    <select name="bathrooms" class="form-control">
+                                        <option disabled selected value="0"> -- Nombre de salles de bain -- </option>
+                                        {% for bathroom in bathrooms %}
+                                            <option value={{ bathroom.bathrooms_number }}>{{ bathroom.bathrooms_number }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="balcony">Surface terrasse</label>
+                                    <input type="text" name="balcony" placeholder="m²" id="balcony" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="parking_type" class="form-control-label">Stationnement</label>
+                                    <select name="parking_type" class="form-control">
+                                        <option disabled selected value="0"> -- Type de stationnement -- </option>
+                                        {% for parking_type in parking_types %}
+                                            <option value={{ parking_type.id }}>{{ parking_type.parking_type_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <label for="age" class="form-control-label">Année de construction</label>
+                                    <select name="age" class="form-control">
+                                        <option disabled selected value="0"> -- Année de construction -- </option>
+                                        {% for build_year in build_years %}
+                                            <option value={{ build_year.id }}>{{ build_year.building_year_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" placeholder="Description du bien"></textarea>
+                                </p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="single-add-property">
+                <h3>Medias -- Photo à la une</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="property-form-group">
+                            <br>Ajoutez ici la <strong>principale</strong> pour ce bien, vous pourrez ensuite ajouter d'autres photos.</br>
+                            Formats acceptés: <strong>jpg, png, bmp</strong>. Taille Maxi: <strong>2MB</strong></br>
+                            <i>Rq: Pour un rendu optimal, une photo en orientation <strong>paysage</strong> est conseillée.</i>
+
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="file" id="main_picture" name="main_picture">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-add-property">
+                <h3>Localisation du bien</h3>
+                <div class="property-form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                           {% if errors.adresse %}
+                           <div class="alert alert-danger" role="alert">Le champ {{ errors.adresse | first }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="address-input">Adresse</label>
+                                <input type="text" class="form-control" name="address-input" placeholder="Entrez l'adresse" id="estate_address">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="postal_code">Code Postal</label>
+                                <input type="text" class="form-control" name="postal_code" placeholder="Code postal" id="estate_postal_code">
+                            </div>
+                            <div id="list_town"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="town">Ville</label>
+                                <input type="text" class="form-control" name="town" placeholder="Ville (automatique)" id="estate_town">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="estate_town_id"  id="estate_town_id">
+                            </div>
+                        </div>
+                    </div>
+{#                    <div class="row">#}
+{#                        <div class="col-lg-6 col-md-12">#}
+{#                                <input type="hidden" name="latitude" placeholder="Google Maps latitude" id="latitude">#}
+{#                        </div>#}
+{#                        <div class="col-lg-6 col-md-12">#}
+{#                                <input type="hidden" name="longitude" placeholder="Google Maps longitude" id="longitude">#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+            <div class="single-add-property">
+                <h3>Extra Information</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pro-feature-add">
+                            {% for feature in featured %}
+                                <li class="fl-wrap filter-tags clearfix">
+                                    <div class="checkboxes float-left">
+                                        <div class="filter-tags-wrap">
+                                            <input id="check-b{{ feature.id }}" type="checkbox" name="check">
+                                            <label for="check-b{{ feature.id }}">{{feature.featured_name}}</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="single-add-property">
+                <h3>Coordonnées propriétaire</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-check">
+                            <input id="owner" type="checkbox" name="owner" class="form-check-input"><label for="owner" class="form-check-label">Si vous êtes le propriétaire cliquez ici, sinon merci de compléter les champs</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="property-form-group">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="ownername">Désignation</label>
+                                <input type="text" class="form-control{{ errors.ownername ? ' is-invalid' : '' }}" placeholder="Nom du propriétaire" id="ownername" name="ownername">
+                                <i class="icon_mail_alt"></i>
+                                {% if errors.ownername %}
+                                    <div class="invalid-feedback"> {{ errors.ownername | first }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="owner-user">Prénom</label>
+                                <input type="text"  class="form-control" placeholder="Prénom du propriétaire" id="owner-user" name="owner-user">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="con-email">Email</label>
+                                <input type="email"  class="form-control" placeholder="Entrez l'email" id="con-email" name="con-email">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="con-phn">Téléphone</label>
+                                <input type="text"  class="form-control" placeholder="Entrez le numéro de téléphone" id="con-phn" name="con-phn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Ajouter ce bien</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+            </div>
+        </div>
+    </section>
+<!-- END SECTION  -->
+{% endblock %}

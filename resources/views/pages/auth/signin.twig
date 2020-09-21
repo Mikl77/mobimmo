@@ -1,0 +1,55 @@
+{% extends 'layouts/app.twig' %}
+
+{% block main_content %}
+
+        <section class="headings">
+            <div class="text-heading text-center">
+                <div class="container">
+                    <h1>Login</h1>
+                    <h2><a href="{{ url_for('home') }}">Home </a> &nbsp;/&nbsp; login</h2>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION HEADINGS -->
+        <!-- START SECTION LOGIN -->
+        <div id="login">
+            <div class="login">
+                {% include 'components/status.twig' %}
+                <form action="{{url_for('auth.signin')}}" method="post">
+                    {{ csrf() | raw}}
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control{{ errors.email ? ' is-invalid' : '' }}" name="email" id="email" placeholder="e.g mike@mobimmo.com" autofocus>
+                        <i class="icon_mail_alt"></i>
+                        {% if errors.email %}
+                            <div class="invalid-feedback"> {{ errors.email | first }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de Passe</label>
+                        <input type="password" class="form-control{{ errors.email ? ' is-invalid' : '' }}" name="password" id="password" value="">
+                        <i class="icon_lock_alt"></i>
+                        {% if errors.password %}
+                            <div class="invalid-feedback"> {{ errors.password | first }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="fl-wrap clearfix add_bottom_30">
+                        <div class="checkboxes float-left">
+                            <div class="">
+                                <input id="check-b" type="checkbox" name="persist">
+                                <label for="check-b">Rester connecté</label>
+                            </div>
+                        </div>
+                        <div class="float-right mt-1"><a id="forgot" href="{{ url_for('auth.password.recover') }}">Mot de passe oublié?</a></div>
+                    </div>
+                    <button type="submit" class="btn_1 rounded full-width">
+                        Se connecter
+                    </button>
+                    <div class="text-center add_top_10">Nouveau sur Mobimmo? <strong><a href="{{url_for('auth.signup')}}">Enregistrez-vous!</a></strong></div>
+                    <input type="hidden" name="redirect" value="{{ redirect }}">
+                </form>
+            </div>
+        </div>
+        <!-- END SECTION LOGIN -->
+{% endblock %}

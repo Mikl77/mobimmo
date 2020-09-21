@@ -1,0 +1,36 @@
+{% extends 'layouts/app.twig' %}
+{% block main_content %}
+    <section class="headings">
+        <div class="text-heading text-center">
+            <div class="container">
+                <h1>Nouveau mot de passe</h1>
+                <h2><a href="{{ url_for('home') }}">Home </a> &nbsp;/&nbsp; Reset</h2>
+            </div>
+        </div>
+    </section>
+    <!-- END SECTION HEADINGS -->
+    <!-- START SECTION LOGIN -->
+    <div id="login">
+        <div class="login">
+            {% include 'components/status.twig' %}
+            <form action="{{url_for('auth.password.reset')}}" method="post">
+                {{ csrf() | raw}}
+                <div class="form-group">
+                    <label>Mot de Passe</label>
+                    <input type="password" class="form-control{{ errors.email ? ' is-invalid' : '' }}" name="password" id="password" value="">
+                    <i class="icon_lock_alt"></i>
+                    {% if errors.password %}
+                        <div class="invalid-feedback"> {{ errors.password | first }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn_1 rounded full-width">
+                    Ré-initialiser
+                </button>
+                <input type="hidden" name="email" value="{{ email }}">
+                <input type="hidden" name="code" value="{{ code }}">
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

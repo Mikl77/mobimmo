@@ -1,0 +1,29 @@
+{% extends 'layouts/app_inner_pages.twig' %}
+
+{% block main_content %}
+
+    <section class="headings">
+        <div class="text-heading text-center">
+            <div class="container">
+                <h1>Error 404</h1>
+                <h2><a href="{{ url_for('home') }}">Home </a> &nbsp;/&nbsp; Error 404</h2>
+            </div>
+        </div>
+    </section>
+    <!-- END SECTION HEADINGS -->
+
+    <!-- START SECTION 404 -->
+    <section class="notfound">
+        <div class="container">
+            <div class="top-headings">
+                <h2 class="h3 text-center font-weight-bold">404</h2>
+                <h3 class="text-center">Page Not Found!</h3>
+                <p class="text-center">Oops! Nous n'arrivons pas à trouver la page demandée...</p>
+            </div>
+            <div class="port-info">
+                <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">Retour vers Home</a>
+            </div>
+        </div>
+    </section>
+    <!-- END SECTION 404 -->
+{% endblock %}

@@ -1,0 +1,88 @@
+<!-- ARCHIVES JS -->
+<script src="/assets/import/js/jquery.min.js"></script>
+<script src="/assets/import/js/jquery-ui.js"></script>
+<script src="/assets/import/js/range-slider.js"></script>
+<script src="/assets/import/js/tether.min.js"></script>
+<script src="/assets/import/js/bootstrap.min.js"></script>
+<script src="/assets/import/js/mmenu.min.js"></script>
+<script src="/assets/import/js/mmenu.js"></script>
+<script src="/assets/import/js/slick.min.js"></script>
+<script src="/assets/import/js/slick4.js"></script>
+<script src="/assets/import/js/fitvids.js"></script>
+<script src="/assets/import/js/smooth-scroll.min.js"></script>
+<script src="/assets/import/js/lightcase.js"></script>
+<script src="/assets/import/js/light.js"></script>
+<script src="/assets/import/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/import/js/popup.js"></script>
+<script src="/assets/import/js/ajaxchimp.min.js"></script>
+<script src="/assets/import/js/newsletter.js"></script>
+<script src="/assets/import/js/timedropper.js"></script>
+<script src="/assets/import/js/datedropper.js"></script>
+<script src="/assets/import/js/leaflet.js"></script>
+<script src="/assets/import/js/leaflet-gesture-handling.min.js"></script>
+<script src="/assets/import/js/leaflet-providers.js"></script>
+<script src="/assets/import/js/leaflet.markercluster.js"></script>
+<script src="/assets/import/js/map-single.js"></script>
+<script src="/assets/import/js/inner.js"></script>
+<script src="/assets/import/js/color-switcher.js"></script>
+<script src="/dist/jquery-validation/dist/jquery.validate.js"></script>
+<!-- Data Tables-->
+<script src="/dist/datatables.net/js/jquery.dataTables.js"></script>
+<script src="/dist/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="/dist/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/dist/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script src="/assets/import/js/tables-datatable.js"></script>
+<script src="/assets/import/js/custom.js"></script>
+
+
+<!-- Date Dropper Script-->
+<script>
+    $('#reservation-date').dateDropper();
+
+</script>
+<!-- Time Dropper Script-->
+<script>
+    this.$('#reservation-time').timeDropper({
+        setCurrentTime: false,
+        meridians: true,
+        primaryColor: "#e8212a",
+        borderColor: "#e8212a",
+        minutesInterval: '15'
+    });
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+            disableOn: 700,
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
+            fixedContentPos: false
+        });
+    });
+
+</script>
+
+<script>
+    //todo bosser sur les carousel car qd plus de 5 photos alors la presentation n est pas bonne
+    $('.slick-carousel').each(function() {
+        var slider = $(this);
+        $(this).slick({
+            infinite: true,
+            dots: false,
+            arrows: false,
+            centerMode: true,
+            centerPadding: '0'
+        });
+
+        $(this).closest('.slick-slider-area').find('.slick-prev').on("click", function() {
+            slider.slick('slickPrev');
+        });
+        $(this).closest('.slick-slider-area').find('.slick-next').on("click", function() {
+            slider.slick('slickNext');
+        });
+    });
+</script>

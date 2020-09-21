@@ -1,0 +1,13 @@
+{% set link = full_url_for('auth.password.reset',{},{'email':user.email, 'code':code}) %}
+<p>
+    Bonjour {{ user.first_name }},
+</p>
+
+<p>
+    Voici le lien pour renouveler ton mot de passe:
+    <a href="{{ link }}">{{ link }}</a>
+</p>
+
+<p>
+    - Mobimmo
+</p>

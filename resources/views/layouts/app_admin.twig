@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'components/header/style.twig' %}
+    <title>Mobimmo</title>
+
+</head>
+<body class="inner-pages">
+<div id="wrapper">
+    <header id="header-container">
+        {% include 'components/menu/menu_top_bar.twig' %}
+    </header>
+    <div class="clearfix"></div>
+    <!-- Header Container / End -->
+    {% block main_content %}
+    {% endblock %}
+    {% include 'components/footer/footer.twig' %}
+    {% include 'components/footer/preloader.twig' %}
+    {% include 'components/header/script.twig' %}
+</div>
+</body>
+</html>

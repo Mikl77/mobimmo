@@ -1,0 +1,114 @@
+{% extends 'layouts/app_admin.twig' %}
+{% block main_content %}
+        <!-- START SECTION USER PROFILE -->
+        <section class="user-page section-padding py-5">
+            <div class="container-fluid">
+                <div class="row">
+                    {% include 'components/menu/menu_left_admin.twig' %}
+                    <div class="col-lg-9 col-md-12 col-xs-12">
+                        <div class="my-address">
+                            <h3 class="heading">Mon Profil</h3>
+                            {% include 'components/status.twig' %}
+                            <form action="{{ url_for('account') }}" method="post">
+                                {{ csrf() | raw }}
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-12">
+                                        <div class="form-group">
+                                            <label for="gender" class="form-control-label">Genre</label>
+                                            <select name="gender" class="form-control">
+                                                <option disabled selected value="0"> -- Choisir ci-dessous -- </option>
+                                                <option value="F">Mme</option>
+                                                <option value="H">Mr</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Prénom</label>
+                                            <input type="text" name="first_name" class="form-control{{ errors.first_name ? ' is-invalid' : '' }}" value="{{ old.first_name ?: user.first_name }}">
+                                            {% if errors.first_name %}
+                                                <div class="invalid-feedback"> {{ errors.first_name | first }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Nom</label>
+                                            <input type="text" name="last_name" class="form-control{{ errors.last_name ? ' is-invalid' : '' }}" value="{{ old.last_name ?: user.last_name }}">
+                                            {% if errors.last_name %}
+                                                <div class="invalid-feedback"> {{ errors.last_name | first }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-12">
+                                        <div class="form-group">
+                                            <label>Date de Naissance</label>
+                                            <input type="text" name="dob" class="form-control" placeholder="Date de Naissance">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Adresse</label>
+                                            <input type="text" name="address" class="form-control" placeholder="Adresse">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Code Postal</label>
+                                            <input type="text" name="postal_code" class="form-control" placeholder="Code postal">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Ville (Automatique)</label>
+                                            <input type="text" name="town" class="form-control" placeholder="Ville">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Téléphone</label>
+                                            <input type="text" name="phone" class="form-control{{ errors.phone ? ' is-invalid' : '' }}" placeholder="Téléphone" value="{{ old.phone ?: user.phone }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" name="email" class="form-control{{ errors.email ? ' is-invalid' : '' }}" placeholder="Email" value="{{ old.email ?: user.email }}">
+                                            {% if errors.email %}
+                                                <div class="invalid-feedback"> {{ errors.email | first }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Pseudo</label>
+                                            <input type="text" name="pseudo" class="form-control" placeholder="Pseudo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>A propos</label>
+                                            <textarea class="form-control" rows="5" name="message">Message</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="send-btn">
+                                            <button type="submit" class="btn btn-primary btn-lg">Mettre à jour</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION USER PROFILE -->
+
+   {% endblock %}

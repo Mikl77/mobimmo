@@ -1,0 +1,58 @@
+<!-- Topbar -->
+<div class="header-top">
+    <div class="container">
+        <div class="top-info hidden-sm-down">
+            <!--<div class="call-header">
+                <p><i class="fa fa-phone" aria-hidden="true"></i> (234) 0200 17813</p>
+            </div>-->
+            <div class="address-header">
+               <p><a href="{{ url_for('home') }}"><i class="fa fa-map-marker" aria-hidden="true"></i></a> - Mobimmo - </p>
+            </div>
+            <div class="mail-header">
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> contact@mobimmo.fr</p>
+            </div>
+        </div>
+        <div class="top-social hidden-sm-down">
+        {% if user %}
+           <p> {{ user.fullName() }}</p>
+            <div class="social-icons-header">
+                <div class="social-icons">
+                    <a href="{{url_for('dashboard')}}"><i class="fas fa-home" aria-hidden="true"></i></a>
+                    <a href="#" onclick="document.getElementById('signout').submit();return false;"><i class="fa fa-sign-in"></i></a>
+                </div>
+            </div>
+            <form action="{{ url_for('auth.signout') }}" method="post" id="signout">
+                {{ csrf() | raw}}
+            </form>
+
+            {% else %}
+                <div class="social-icons-header">
+                    <div class="social-icons">
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="login-wrap">
+                    <ul class="d-flex">
+                        <li><a href="{{ url_for('auth.signin')}}"><i class="fa fa-user"></i> Login</a></li>
+                        <li><a href="{{ url_for('auth.signup')}}"><i class="fa fa-sign-in"></i> Register</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true">
+                        <img src="/assets/import/images/fr.png" alt="lang" /> France
+                    </button>
+            {% endif %}
+
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownlang">
+                    <li><img src="images/fr.png" alt="lang" />France</li>
+                    <li><img src="images/de.png" alt="lang" /> German</li>
+                    <li><img src="images/it.png" alt="lang" />Italy</li>
+                </ul>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!-- Topbar / End -->

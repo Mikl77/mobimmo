@@ -1,0 +1,157 @@
+{% extends 'layouts/layout_admin.twig' %}
+
+{% block main_content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Ajouter un contrat</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{url_for('dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item active">Ajouter un contrat</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% include 'components/status.twig' %}
+                    </div>
+                </div>
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">1-Type de contrat</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- radio -->
+                                                <div class="form-group clearfix">
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="radio" id="radioPrimary1" name="r1">
+                                                        <label for="radioPrimary1">
+                                                            Location
+                                                        </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="radio" id="radioPrimary2" name="r1">
+                                                        <label for="radioPrimary2">
+                                                            Vente
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">1 Bis-Type de contrat... suite</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- radio -->
+                                                <div class="form-group clearfix">
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="radio" id="radioSecondary1" name="r2">
+                                                        <label for="radioSecondary1">
+                                                            Meublé
+                                                        </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="radio" id="radioSecondary2" name="r2">
+                                                        <label for="radioSecondary2">
+                                                            Non meublé
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                            </div>
+                            <!-- /.card -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">2-Choix du Bien</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="estate_list" class="form-control-label">Liste des biens</label>
+                                                <select name="estate_list" class="form-control">
+                                                    <option disabled selected value="0"> -- Choisir un bien -- </option>
+                                                    {% for estate in estate_list %}
+                                                        <option value={{ estate.estate_id }}>{{ estate.estate_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">3-Ajout du/des locataire(s)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-add-client">
+                                            Ajouter un locataire
+                                        </button>
+                                    </div>
+                                    <div class="row">
+                                        <input type="hidden" value="" id="locataires_list">
+                                            <div class="card-body pb-0">
+                                                <div class="row d-flex align-items-stretch">
+                                                    <div id="list" class="col-12">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    <div class="row">
+                        <button class="btn-outline-primary btn-lg btn-block" id="add-new-contract">Créer nouveau contrat</button>
+                    </div>
+                </form>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% include '/components/modals/add_loca.twig' %}
+{% endblock %}

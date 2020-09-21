@@ -1,0 +1,288 @@
+{% extends 'layouts/layout_admin.twig' %}
+
+{% block main_content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Ajouter un bien</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{url_for('dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item active">Ajouter un bien</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% include 'components/status.twig' %}
+                    </div>
+                </div>
+                <form action="{{ url_for('add_estate') }}" enctype="multipart/form-data" method="post">
+                    {{ csrf() | raw }}
+                    <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">1-Titre et présentation</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="title">Titre</label>
+                                        <input type="text"  class="form-control{{ errors.designation ? ' is-invalid' : '' }}" name="designation" id="designation" placeholder="Donnez un nom à ce bien">
+                                        <i class="icon_mail_alt"></i>
+                                        {% if errors.designation %}
+                                            <div class="invalid-feedback"> {{ errors.designation | first }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Présentation</label>
+                                            <textarea class="form-control" id="description" name="description" placeholder="Texte de présentation du bien" rows="4"></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <!-- Form Element sizes -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">2- Description </h3>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                            <label for="estate_status" class="form-control-label">Situation</label>
+                                            <select name="estate_status" class="form-control">
+                                                <option disabled selected value="0"> -- Choisir une situation -- </option>
+                                                {% for status in estate_statuses %}
+                                                    <option value={{ status.id }}>{{ status.estate_status_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                    <div class="col-4">
+                                            <label for="estate_type" class="form-control-label">Type</label>
+                                                <select name="estate_type" class="form-control">
+                                                    <option disabled selected value="0"> -- Choisir un type -- </option>
+                                                    {% for type in estate_types %}
+                                                        <option value={{ type.id }}>{{ type.estate_type_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                    </div>
+                                    <div class="col-4">
+                                                <label for="rooms" class="form-control-label">Pièces</label>
+                                                <select name="rooms" class="form-control">
+                                                    <option disabled selected value="0"> -- Nombre de pièces -- </option>
+                                                    {% for room in rooms %}
+                                                        <option value={{ room.rooms_number }}>{{ room.rooms_number }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label for="bedrooms" class="form-control-label">Chambres</label>
+                                        <select name="bedrooms" class="form-control">
+                                            <option disabled selected value="0"> -- Nombre de chambres -- </option>
+                                            {% for bedroom in bedrooms %}
+                                                <option value={{ bedroom.bedrooms_number }}>{{ bedroom.bedrooms_number }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="bathrooms" class="form-control-label">Salle de bain</label>
+                                        <select name="bathrooms" class="form-control">
+                                            <option disabled selected value="0"> -- Nombre de salles de bain -- </option>
+                                            {% for bathroom in bathrooms %}
+                                                <option value={{ bathroom.bathrooms_number }}>{{ bathroom.bathrooms_number }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="parking_type" class="form-control-label">Stationnement</label>
+                                        <select name="parking_type" class="form-control">
+                                            <option disabled selected value="0"> -- Type de stationnement -- </option>
+                                            {% for parking_type in parking_types %}
+                                                <option value={{ parking_type.id }}>{{ parking_type.parking_type_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="age" class="form-control-label">Année de construction</label>
+                                        <select name="age" class="form-control">
+                                            <option disabled selected value="0"> -- Année de construction -- </option>
+                                            {% for build_year in build_years %}
+                                                <option value={{ build_year.id }}>{{ build_year.building_year_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="area">Surface</label>
+                                            <input type="text" name="area" placeholder="m²" id="area" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="balcony">Surface terrasse</label>
+                                            <input type="text" name="balcony" placeholder="m²" id="balcony" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="field">Surface Terrain</label>
+                                            <input type="text" name="field" placeholder="m²" id="field" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- /.card-body -->
+                        <!-- /.card -->
+
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">3- Contact</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                            <label class="custom-control-label" for="customSwitch1">Êtes-vous personnellement propriétaire de ce bien?</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+                        <!-- general form elements disabled -->
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                                <h3 class="card-title">4- Adresse - Localisation</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <label for="address-input">Adresse</label>
+                                                <input type="text" class="form-control" name="address-input" placeholder="Entrez l'adresse" id="estate_address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="postal_code">Code Postal</label>
+                                                <input type="text" class="form-control" name="postal_code" placeholder="Code postal" id="estate_postal_code">
+                                            </div>
+                                            <div id="list_town"></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="town">Ville</label>
+                                                <input type="text" class="form-control" name="town" placeholder="Ville (automatique)" id="estate_town">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="estate_town_id"  id="estate_town_id">
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">5-Medias</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Photo à la une</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <p>
+                                            <br>Ajoutez ici la <strong>principale</strong> pour ce bien, vous pourrez ensuite ajouter d'autres photos.</br>
+                                            Formats acceptés: <strong>jpg, png, bmp</strong>. Taille Maxi: <strong>2MB</strong></br>
+                                            <i>Rq: Pour un rendu optimal, une photo en orientation <strong>paysage</strong> est conseillée.</i>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="file" id="main_picture" name="main_picture" data-show-preview="false">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">6-Options et Equipements</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    {% for feature in featured %}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                <input type="checkbox" class="custom-control-input" id="{{ feature.id }}">
+                                                <label class="custom-control-label" for="{{ feature.id }}">{{feature.featured_name}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                    <div class="row">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block">
+                    </div>
+                </form>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}

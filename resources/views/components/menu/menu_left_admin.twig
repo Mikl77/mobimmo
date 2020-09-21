@@ -1,0 +1,56 @@
+<div class="col-lg-3 col-md-12 col-xs-12">
+    <div class="user-profile-box mb-0">
+        <div class="header clearfix">
+            <h2>{{user.fullName()}}</h2>
+            <h4>Utilisateur Actif</h4>
+            <img src="/assets/import/images/testimonials/user.png" alt="avatar" class="img-fluid profile-img">
+        </div>
+        <div class="detail clearfix">
+            <ul class="mb-0">
+                <li>
+                    <a class="active" href="{{url_for('dashboard')}}">
+                        <i class="fa fa-map-marker"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('account')}}">
+                        <i class="fa fa-user"></i>Mon profil
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('add_estate')}}">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Ajouter  un bien
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users" aria-hidden="true"></i>Gestion Locataire
+                    </a>
+                </li>
+                <li>
+                    <a href="payment-method.html">
+                        <i class="fas fa-calculator"></i>Comptabilité
+                    </a>
+                </li>
+                <li>
+                    <a href="invoice.html">
+                        <i class="fas fa-paste"></i>Documents
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>Gestion Prestataires
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="document.getElementById('signout').submit();return false;">
+                        <i class="fas fa-sign-out-alt"></i>Se déconnecter
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<form action="{{ url_for('auth.signout') }}" method="post" id="signout">
+    {{ csrf() | raw}}
+</form>

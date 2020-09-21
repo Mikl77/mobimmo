@@ -1,0 +1,116 @@
+{% extends 'layouts/app_admin.twig' %}
+{% block main_content %}
+        <!-- START SECTION DASHBOARD -->
+        <section class="user-page section-padding py-5">
+            <div class="container-fluid">
+                <div class="row">
+                    {% include 'components/menu/menu_left_admin.twig' %}
+                    <div class="col-lg-9 col-md-12 col-xs-12">
+                        {% include 'components/success.twig' %}
+                        <div class="dashborad-box">
+                            <h4 class="title">Manage Dashboard</h4>
+                            <div class="section-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="item">
+                                            <div class="icon">
+                                                <i class="fa fa-list" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="info">
+                                                <h6 class="number">{{ estates | length }}</h6>
+                                                    <p class="type ml-1">Bien{% if estates | length > 1%}s{% endif %} en gestion</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="item">
+                                            <div class="icon">
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="info">
+                                                <h6 class="number">116</h6>
+                                                <p class="type ml-1">Total Reviews</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="item mb-0">
+                                            <div class="icon">
+                                                <i class="fas fa-comments"></i>
+                                            </div>
+                                            <div class="info">
+                                                <h6 class="number">{{ messages | length }}</h6>
+                                                <p class="type ml-1">Message{% if messages | length > 1%}s{% endif%}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-properties">
+                            <table class="table-responsive" id="datatable1">
+                                <thead>
+                                <tr>
+                                    <th class="pl-2">Mes biens</th>
+                                    <th class="p-0"></th>
+                                    <th>Date MàJ</th>
+                                    <th>Vues</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for estate in estates %}
+                                    <tr>
+                                        <td class="image myelist">
+                                            <a href="{{ url_for('show_estate',{'ref':estate.estate_reference}) }}"><img alt="my-properties-3" src="/uploads/media/pictures/thumb/{{ estate.estate_main_picture_filename }}_thumb.jpg" class="img-fluid"></a>
+                                        </td>
+                                        <td>
+                                            <div class="inner">
+                                                <a href="{{ url_for('show_estate',{'ref':estate.estate_reference}) }}"><h2>{{ estate.estate_name  }}</h2></a>
+                                                <figure><i class="lni-map-marker">{{ estate.address }}, {{ estate.postal_code }} {{ estate.town }}</i></figure>
+                                            </div>
+                                        </td>
+                                        <td>08.14.2020</td>
+                                        <td>163</td>
+                                        <td class="actions">
+                                            <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
+                                            <a href="#"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="dashborad-box">
+                            <h4 class="title">Message{% if messages | length > 1%}s{% endif%} <span class="badge badge-primary">{{ messages | length }} New</span></h4>
+                            <div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col-md-2">#</th>
+                                            <th scope="col-md-2">Expéditeur</th>
+                                            <th scope="col-md-5">Contenu</th>
+                                            <th scope="col-md-1">Visualiser</th>
+                                            <th scope="col-md-1">Archiver</th>
+                                            <th scope="col-md-1">Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    {% for message in messages %}
+                                    <tr>
+                                        <td><i class="fas fa-envelope"></i></td>
+                                        <td>{{ message.client_first_name }} {{ message.client_last_name }}</td>
+                                        <td>{{ message.content }}</td>
+                                        <td><a href=""><i class="fa fa-eye"></i></a></td>
+                                        <td><a href=""><i class="fas fa-folder-open"></i></a></td>
+                                        <td><a href=""><i class="far fa-trash-alt"></i></a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION DASHBOARD -->
+{% endblock %}

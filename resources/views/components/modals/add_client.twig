@@ -1,0 +1,52 @@
+<div class="modal fade" id="modal-add-client" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ajouter un locataire</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="mail_search_part">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" name="input-email" class="form-control" id="mail_to_find" placeholder="Email">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" id="mail_search">Valider</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="hidden" id="first_user_id" value="{{ user.id }}">
+                        <input type="hidden" id="relation_type_id" value="{{ relation_type_id}}">
+                    </div>
+                </div>
+                <div id="add_client_form">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="input-lastname">Nom</label>
+                                <input type="text" name="input-lastname" class="form-control" placeholder="Nom">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="input-firstname">Prenom</label>
+                                <input type="text" name="input-firstname" class="form-control" placeholder="Prénom">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

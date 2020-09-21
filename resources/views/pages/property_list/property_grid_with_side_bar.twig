@@ -1,0 +1,219 @@
+{% extends 'layouts/app_inner_pages.twig' %}
+{% block main_content %}
+<section class="headings">
+    <div class="text-heading text-center">
+        <div class="container">
+            <h1>Liste des biens</h1>
+            <h2><a href="{{url_for('home')}}">Home </a> &nbsp;/&nbsp; Liste des biens</h2>
+        </div>
+    </div>
+</section>
+<!-- END SECTION HEADINGS -->
+
+<!-- START SECTION PROPERTIES LISTING -->
+<section class="properties-right featured portfolio blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 blog-pots">
+                <!-- Block heading Start-->
+                <div class="block-heading">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-5 col-2">
+                            <h4>
+                                <span class="heading-icon">
+                                <i class="fa fa-th-list"></i>
+                                </span>
+                                <span class="hidden-sm-down">Liste des biens</span>
+                            </h4>
+                        </div>
+
+                        <div class="col-lg-6 col-md-7 col-10 cod-pad">
+                            <div class="sorting-options">
+                                <select class="sorting" id="order_choice">
+                                    <option disabled selected value="0"> -- Modifier l'ordre d'affichage -- </option>
+                                    {% for order in orders %}
+                                        <option value={{ order.query_value }}>{{ order.order_description }}</option>
+                                    {% endfor %}
+                                </select>
+                                <a href="properties-list-right-sidebar.html" class="change-view-btn lde"><i class="fa fa-th-list"></i></a>
+                                <a href="{{ url_for('property_list') }}" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if estates | length < 1 %}
+                    <row>
+                        <div class="alert alert-danger" role="alert">
+                            <span>Aucun bien ne répond à ces critères de recherche</span>
+                        </div>
+                    </row>
+                    {% endif %}
+                <div class="row">
+                        {% for estate in estates %}
+                            {% include 'pages/property_list/single_property_card.twig' %}
+                        {% endfor %}
+                </div>
+                <!-- Block heading end -->
+            </div>
+            <aside class="col-lg-3 col-md-12 car">
+                <div class="widget">
+                    <div class="section-heading">
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="media-body">
+                                <h5>Recherche</h5>
+                                <div class="border"></div>
+                                <p>Recherchez un bien</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Search Fields -->
+                    <div class="main-search-field">
+                        <h5 class="title">Filtrer</h5>
+                        <form enctype="multipart/form-data" class="ajax">
+                            {{ csrf() | raw }}
+                            <div class="col-lg-12 no-pds">
+                                <div class="at-col-default-mar mb-3">
+                                    <input class="at-input" type="text" id="search_estate_town" placeholder="Code Postal - Ville">
+                                    <div id="townList"></div>
+                                    <input type="hidden" name="estate_town" id="estate_town_id">
+                                </div>
+                            </div>
+                            <div class="at-col-default-mar mb-3">
+                                <select class="div-toggle" name="estate_status">
+                                    <option disabled selected value="0"> -- Choisir une situation -- </option>
+                                    {% for status in statuses %}
+                                        <option value={{ status.id }}>{{ status.estate_status_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="at-col-default-mar mb-3">
+                                <div class="at-col-default-mar">
+                                    <select name="estate_type">
+                                        <option disabled selected value="0"> -- Choisir un type -- </option>
+                                        {% for type in types %}
+                                            <option value={{ type.id }}>{{ type.estate_type_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="at-col-default-mar mb-3">
+                                <select name="bedrooms">
+                                    <option disabled selected value="0"> -- Nombre de pièces -- </option>
+                                    {% for room in rooms %}
+                                        <option value={{ room.rooms_number }}>{{ room.rooms_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="at-col-default-mar mb-3">
+                                <select name="bedrooms">
+                                    <option disabled selected value="0"> -- Nombre de chambres -- </option>
+                                    {% for bedroom in bedrooms %}
+                                        <option value={{ bedroom.bedrooms_number }}>{{ bedroom.bedrooms_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="at-col-default-mar mb-3">
+                                <select name="bathrooms">
+                                    <option disabled selected value="0"> -- Nombre de salles de bain -- </option>
+                                    {% for bathroom in bathrooms %}
+                                        <option value={{ bathroom.bathrooms_number }}>{{ bathroom.bathrooms_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">Surface</label>
+                            </div>
+                            <div class="col-lg-12 no-pds">
+                                    <div class="at-col-default-mar">
+                                        <input class="at-input" type="text" name="surfaceMin" placeholder="Surface m² Min">
+                                    </div>
+                            </div>
+                                <div class="col-lg-12 no-pds my-4">
+                                    <div class="at-col-default-mar">
+                                        <input class="at-input" type="text" name="surfaceMax" placeholder="Surface m² Max">
+                                    </div>
+                                </div>
+                            <div>
+                                <label for="">Prix</label>
+                            </div>
+                            <div class="col-lg-12 no-pds">
+                                <div class="at-col-default-mar">
+                                    <input class="at-input" type="text" name="priceMin" placeholder="Prix Min">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 no-pds my-4">
+                                <div class="at-col-default-mar">
+                                    <input class="at-input" type="text" name="priceMax" placeholder="Prix Max">
+                                </div>
+                            </div>
+                            <div>
+                                <input type="submit" class="btn btn-default hvr-bounce-to-right" value="Rechercher" id="estate_search">
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="recent-post py-5">
+                        <h5 class="font-weight-bold mb-4">Nouveaux biens</h5>
+                        <div class="recent-main">
+                            <div class="recent-img">
+                                <a href="blog-details.html"><img src="/assets/import/images/feature-properties/fp-1.jpg" alt=""></a>
+                            </div>
+                            <div class="info-img">
+                                <a href="blog-details.html"><h6>Family Home</h6></a>
+                                <p>$230,000</p>
+                            </div>
+                        </div>
+                        <div class="recent-main my-4">
+                            <div class="recent-img">
+                                <a href="blog-details.html"><img src="/assets/import/images/feature-properties/fp-2.jpg" alt=""></a>
+                            </div>
+                            <div class="info-img">
+                                <a href="blog-details.html"><h6>Family Home</h6></a>
+                                <p>$230,000</p>
+                            </div>
+                        </div>
+                        <div class="recent-main">
+                            <div class="recent-img">
+                                <a href="blog-details.html"><img src="/assets/import/images/feature-properties/fp-3.jpg" alt=""></a>
+                            </div>
+                            <div class="info-img">
+                                <a href="blog-details.html"><h6>Family Home</h6></a>
+                                <p>$230,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-post">
+                        <h5 class="font-weight-bold mb-4">Popolar Tags</h5>
+                        <div class="tags">
+                            <span><a href="#" class="btn btn-outline-primary">Houses</a></span>
+                            <span><a href="#" class="btn btn-outline-primary">Real Home</a></span>
+                        </div>
+                        <div class="tags">
+                            <span><a href="#" class="btn btn-outline-primary">Baths</a></span>
+                            <span><a href="#" class="btn btn-outline-primary">Beds</a></span>
+                        </div>
+                        <div class="tags">
+                            <span><a href="#" class="btn btn-outline-primary">Garages</a></span>
+                            <span><a href="#" class="btn btn-outline-primary">Family</a></span>
+                        </div>
+                        <div class="tags">
+                            <span><a href="#" class="btn btn-outline-primary">Real Estates</a></span>
+                            <span><a href="#" class="btn btn-outline-primary">Properties</a></span>
+                        </div>
+                        <div class="tags">
+                            <span><a href="#" class="btn btn-outline-primary">Location</a></span>
+                            <span><a href="#" class="btn btn-outline-primary">Price</a></span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+       {{ estates.links | raw }}
+    </div>
+</section>
+<!-- END SECTION PROPERTIES LISTING -->
+{% endblock %}

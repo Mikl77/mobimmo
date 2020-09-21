@@ -1,0 +1,227 @@
+{% extends 'layouts/layout_admin.twig' %}
+
+{% block main_content %}
+    <div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <a href="{{ url_for('estate_user_list') }}"><h1>Liste des biens</h1></a>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{url_for('dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Liste des biens</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-solid">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-6" id="image_part">
+                        <h3 class="d-inline-block d-sm-none">{{ estate.estate_name }}</h3>
+                        <div class="col-12" id="database_main_img">
+                            <img src="/uploads/media/pictures/carousel/{{ estate.estate_main_picture_filename }}_carousel.jpg" class="product-image" alt="Product Image">
+                        </div>
+                        <div id="uploaded_main_img"></div>
+                        <div class="col-12 product-image-thumbs" id="database_img">
+                            {% if pictures | length != 0 %}
+                                {% for picture in pictures %}
+                                    <div class="product-image-thumb"><img src="/uploads/media/pictures/thumb/{{ picture.filename }}_thumb.jpg" alt="Product Image"><a
+                                                href=""><i class="fas fa-times-circle close" id="{{ picture.filename }}"></i></a></div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div id="uploaded_img"></div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="estate_title">Titre</label>
+                                    <input name="estate_title" id="estate_title" type="text" class="form-control form-control-lg" value="{{estate.estate_name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="txtarea1">Texte descriptif:</label>
+                                    <textarea class="form-control" id="txtarea1" rows="3">{{ estate.estate_description }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+{#                        todo GESTION DE LA SAUVEGARDE PAR AJAX, POUR LE MOMENT SEUL LE TITRE EST ENREGISTRE, FONCTION AJAX CREE#}
+                        <hr>
+                        <h4>Description Générale</h4>
+                        <div class="row">
+                            <div class="col-4">
+                                    <input type="hidden" value="{{ estate.estate_status_id }}" id="estate_status_id">
+                                    <label for="estate_status" class="form-control-label">Situation</label>
+                                    <select name="estate_status" class="form-control estate_status">
+                                        <option disabled selected value="0"> -- Choisir une situation -- </option>
+                                        {% for status in estate_statuses %}
+                                            <option value={{ status.id }}>{{ status.estate_status_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="hidden" value="{{ estate.estate_type_id }}" id="estate_type_id">
+                                <label for="estate_type" class="form-control-label">Type</label>
+                                <select name="estate_type" class="form-control estate_type">
+                                    <option disabled selected value="0"> -- Choisir un type -- </option>
+                                    {% for type in estate_types %}
+                                        <option value={{ type.id }}>{{ type.estate_type_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="hidden" value="{{ estate.number_of_rooms }}" id="estate_rooms_id">
+                                <label for="rooms" class="form-control-label">Pièces</label>
+                                <select name="rooms" class="form-control estate_rooms">
+                                    <option disabled selected value="0"> -- Nombre de pièces -- </option>
+                                    {% for room in rooms %}
+                                        <option value={{ room.rooms_number }}>{{ room.rooms_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <input type="hidden" value="{{ estate.number_of_bedrooms }}" id="estate_bedrooms_id">
+                                <label for="bedrooms" class="form-control-label">Chambres</label>
+                                <select name="bedrooms" class="form-control estate_bedrooms">
+                                    <option disabled selected value="0"> -- Nombre de chambres -- </option>
+                                    {% for bedroom in bedrooms %}
+                                        <option value={{ bedroom.bedrooms_number }}>{{ bedroom.bedrooms_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="hidden" value="{{ estate.number_of_bathrooms }}" id="estate_bathrooms_id">
+                                <label for="bathrooms" class="form-control-label">Salle de bain</label>
+                                <select name="bathrooms" class="form-control estate_bathrooms">
+                                    <option disabled selected value="0"> -- Nombre de salles de bain -- </option>
+                                    {% for bathroom in bathrooms %}
+                                        <option value={{ bathroom.bathrooms_number }}>{{ bathroom.bathrooms_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="hidden" value="{{ estate.estate_parking_type_id}}" id="estate_parking_id">
+                                <label for="parking_type" class="form-control-label">Stationnement</label>
+                                <select name="parking_type" class="form-control estate_parking">
+                                    <option disabled selected value="0"> -- Type de stationnement -- </option>
+                                    {% for parking_type in parking_types %}
+                                        <option value={{ parking_type.id }}>{{ parking_type.parking_type_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="hidden" value="{{ estate.estate_building_year_id }}" id="estate_build_year_id">
+                                <label for="age" class="form-control-label">Année de construction</label>
+                                <select name="age" class="form-control estate_build_year">
+                                    <option disabled selected value="0"> -- Année de construction -- </option>
+                                    {% for build_year in build_years %}
+                                        <option value={{ build_year.id }}>{{ build_year.building_year_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="area">Surface</label>
+                                    <input type="text" name="area" placeholder="m²" id="area" class="form-control" value="{{ estate.floor_space }}">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="balcony">Surface terrasse</label>
+                                    <input type="text" name="balcony" placeholder="m²" id="balcony" class="form-control" value="{{ estate.balconies_space }}">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="field">Surface Terrain</label>
+                                    <input type="text" name="field" placeholder="m²" id="field" class="form-control" value="{{ estate.field_space }}">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block" id="update_estate_form">Enregistrer les modifications</button>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <nav class="w-100">
+                        <div class="nav nav-tabs" id="product-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Medias</a>
+                            <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Localisation</a>
+                            <a class="nav-item nav-link" id="product-skills-tab" data-toggle="tab" href="#product-skills" role="tab" aria-controls="product-skills" aria-selected="false">Atouts - Equipements</a>
+                        </div>
+                    </nav>
+{#                    todo gestion de la partie localisation#}
+{#                    todo gestion de la partie atouts et equipements#}
+                    <div class="tab-content p-3" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+                            <div class="row">
+                                <div class="col-6">
+                                    <form action="">
+                                        <input type="hidden" value="{{ estate.estate_id }}" id="estate_id">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="input-main_picture">Changer de photo principale</label>
+                                                    <input id="input-main_picture" name="input-main_picture" type="file" accept="image/*" data-show-preview="false">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="input-fr">Ajoutez des photos</label>
+                                                    <input id="input-fr" name="input-fr[]" type="file" multiple accept="image/*" data-show-preview="false">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="input-video" >Ajoutez un lien vidéo</label>
+                                                    <input id="input-video" class="form-control" placeholder="Coller ici le lien vers Youtube :  https://www.youtube.com/...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolor eum fuga quo! Amet assumenda deleniti excepturi iste iure officia praesentium quasi qui quod repellat voluptate, voluptatem. Earum, illum, inventore?</p>
+                                    <hr>
+                                    <p>
+                                        Les limitations...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
+                        <div class="tab-pane fade" id="product-skills" role="tabpanel" aria-labelledby="product-skills-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+    </div>
+{% endblock %}
