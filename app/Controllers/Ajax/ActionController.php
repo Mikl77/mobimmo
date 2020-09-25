@@ -4,6 +4,7 @@
 namespace App\Controllers\Ajax;
 
 
+use App\App\PdfInterface;
 use App\Models\All_files;
 use App\Models\Client;
 use App\Models\Estate;
@@ -12,6 +13,7 @@ use App\Models\In_Charge;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\Users_in_relation;
+use App\Providers\PdfServiceProvider;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -322,12 +324,10 @@ class ActionController
                 // -- Etape 3 -- Creation pdf //
                 // En cours
 
+                $html2pdf = new PdfServiceProvider();
 
+                var_dump($html2pdf);
 
-
-
-
-                echo 'coucou';
             }
 
         }
