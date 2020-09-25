@@ -305,6 +305,28 @@ class ActionController
 
             //creation nouveau contrat
             if ($_POST["action"] == "add_new_contract"){
+
+                // descriptif des etapes de creation
+                // - Validation
+                // - Ajout en bdd
+                // - Creation du pdf
+                // - Archivage pdf
+                // - Envoi des mails
+
+                // -- Etape 1 -- Validation //
+                //todo Validation des elements recus
+
+                // -- Etape 2 -- Ajout en bdd //
+                //todo Ajout bdd
+
+                // -- Etape 3 -- Creation pdf //
+                // En cours
+
+
+
+
+
+
                 echo 'coucou';
             }
 

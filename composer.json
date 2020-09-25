@@ -24,7 +24,8 @@
         "geo6/geocoder-php-addok-provider": "^1.2",
         "almasaeed2010/adminlte": "~3.0",
         "kartik-v/bootstrap-fileinput": "dev-master",
-        "ext-json": "*"
+        "ext-json": "*",
+        "spipu/html2pdf": "^5.2"
     },
 
     "autoload": {

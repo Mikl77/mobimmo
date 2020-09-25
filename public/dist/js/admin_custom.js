@@ -431,7 +431,7 @@ $(document).ready(function () {
       //todo recuperation des valeurs inserees
       //contrat_type ... vente vs location
       //contract_type2 meuble ou non si location
-      // estate_id
+      //estate_id
       //loca_list
 
       $.ajax({
