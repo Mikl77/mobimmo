@@ -1,3 +1,5 @@
 vendor/
 bootstrap/database.php
 mobimmo_dev.sql
+.idea
+.tmp.drivedownload
