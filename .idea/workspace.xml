@@ -26,11 +26,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/www.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/www.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/App/PdfInterface.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controllers/Ajax/ActionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/Ajax/ActionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/PdfServiceProvider.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bootstrap/container.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/container.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/dist/js/admin_custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/js/admin_custom.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +129,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/App" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Archive/online_book" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -186,10 +189,14 @@
       <screen x="72" y="27" width="1748" height="940" />
     </state>
     <state x="719" y="376" width="444" height="249" key="#Composer/72.27.1748.940@72.27.1748.940" timestamp="1600087849294" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1601034000098">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1601040484344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601034000098" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601040484344" />
+    <state x="676" y="242" key="NewPhpClassDialog" timestamp="1601042000900">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="676" y="242" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601042000900" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1600685464590">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -198,10 +205,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601026943402" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601027069637">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601037947369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601027069637" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601037947369" />
     <state x="682" y="356" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1601024947183">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

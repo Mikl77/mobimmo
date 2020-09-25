@@ -4,7 +4,7 @@
 namespace App\Controllers\Ajax;
 
 
-use App\App\PdfInterface;
+use App\Controllers\Base_controller;
 use App\Models\All_files;
 use App\Models\Client;
 use App\Models\Estate;
@@ -13,12 +13,12 @@ use App\Models\In_Charge;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\Users_in_relation;
-use App\Providers\PdfServiceProvider;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Spipu\Html2Pdf\Html2Pdf;
 
-class ActionController
+class ActionController extends Base_controller
 {
     public function getAction(ServerRequestInterface $request, ResponseInterface $response){
 
@@ -324,9 +324,13 @@ class ActionController
                 // -- Etape 3 -- Creation pdf //
                 // En cours
 
-                $html2pdf = new PdfServiceProvider();
+                $path = $this->container->get('settings')['pdf_upload_directory'];
 
-                var_dump($html2pdf);
+                var_dump($path . 'my_doc.pdf');
+
+                $html2pdf = new Html2Pdf('P', 'A4', 'en');
+                $html2pdf->writeHTML('<h1>HelloWorld</h1>This is my first page');
+                $html2pdf->output( $path . 'my_doc.pdf', 'F');
 
             }
 

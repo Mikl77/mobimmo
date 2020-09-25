@@ -7,7 +7,6 @@ use App\Providers\FakerServiceProvider;
 use App\Providers\FlashServiceProvider;
 use App\Providers\MailServiceProvider;
 use App\Providers\MiddlewareServiceProvider;
-use App\Providers\PdfServiceProvider;
 use App\Providers\RelationServiceProvider;
 use App\Providers\ViewServiceProvider;
 
@@ -45,7 +44,3 @@ $container->addServiceProvider(new CsrfServiceProvider(
 
 $container->addServiceProvider(new RelationServiceProvider(
 ));
-
-$container->addServiceProvider(new PdfServiceProvider(
-));
-

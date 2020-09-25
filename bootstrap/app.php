@@ -2,7 +2,6 @@
 
 session_start();
 
-use App\Providers\ViewServiceProvider;
 use App\Views\Factory;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use Cartalyst\Sentinel\Native\SentinelBootstrapper;
@@ -39,8 +38,15 @@ require __DIR__ . '/database.php';
 
 $container =  new Container();
 
+$container->add('settings', function (){
+    return[
+        'pdf_upload_directory'=> __DIR__ . '/../public/uploads/pdf/'
+    ];
+});
+
 AppFactory::setContainer($container);
 $app = AppFactory::create();
+
 
 require __DIR__ . '/container.php';
 require __DIR__ . '/middleware.php';

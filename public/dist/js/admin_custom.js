@@ -446,8 +446,7 @@ $(document).ready(function () {
             estate_id: 6,
             loca_list: ['104', '6', '83']
          },
-         success: function () {
-            alert('coucou');
+         success: function (data) {
          }
       })
    })
