@@ -25,16 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/App/PdfInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/Ajax/ActionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/Ajax/ActionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/PdfServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/container.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/container.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/dist/js/admin_custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/js/admin_custom.js" afterDir="false" />
-    </list>
+    <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,10 +125,13 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\app\App" />
     </key>
@@ -154,6 +148,8 @@
       <workItem from="1600685385244" duration="805000" />
       <workItem from="1601023043736" duration="162000" />
       <workItem from="1601023264344" duration="539000" />
+      <workItem from="1601052431579" duration="109000" />
+      <workItem from="1601292707658" duration="4575000" />
     </task>
     <servers />
   </component>
@@ -189,18 +185,18 @@
       <screen x="72" y="27" width="1748" height="940" />
     </state>
     <state x="719" y="376" width="444" height="249" key="#Composer/72.27.1748.940@72.27.1748.940" timestamp="1600087849294" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1601040484344">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1601296059348">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601040484344" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601296059348" />
     <state x="676" y="242" key="NewPhpClassDialog" timestamp="1601042000900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="676" y="242" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601042000900" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1600685464590">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1601293661330">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600685464590" />
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601293661330" />
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601026943402">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -112,11 +112,20 @@ function AddRelationBetweenUsers($user1, $user2, $relation_type)
      * generateur de pdf
      * @param string $template
      * @param array $variable
+     * @param string $path
+     * @param string $name
      */
-    function generatePdf($template, $variable){
+    function generatePdf($path, $name){
 
 
+        ob_start();
+        include dirname($path,3).'/pdf_templates/contracts/type1.php';
+        $content = ob_get_clean();
 
+        $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+        $html2pdf->writeHTML($content);
+
+        return  $html2pdf->output( $path . $name, 'F');
 
 }
 

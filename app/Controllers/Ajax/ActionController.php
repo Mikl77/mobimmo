@@ -309,7 +309,7 @@ class ActionController extends Base_controller
             if ($_POST["action"] == "add_new_contract"){
 
                 // descriptif des etapes de creation
-                // - Validation
+                // - Recuperation et Validation des variables
                 // - Ajout en bdd
                 // - Creation du pdf
                 // - Archivage pdf
@@ -326,11 +326,9 @@ class ActionController extends Base_controller
 
                 $path = $this->container->get('settings')['pdf_upload_directory'];
 
-                var_dump($path . 'my_doc.pdf');
+                $pdf = generatePdf($path,'my_doc1.pdf');
 
-                $html2pdf = new Html2Pdf('P', 'A4', 'en');
-                $html2pdf->writeHTML('<h1>HelloWorld</h1>This is my first page');
-                $html2pdf->output( $path . 'my_doc.pdf', 'F');
+
 
             }
 
