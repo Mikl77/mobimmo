@@ -74,11 +74,13 @@
         width: 100%;
     }
     .tab-signature {
+        table-layout: fixed;
         width: 100%;
-        table-layout: auto;
         margin-top: 20px;
     }
-
+    .sign-header {
+        width: 50%;
+    }
     img {
         padding: 5px;
         width: 150px;
@@ -521,8 +523,8 @@
 
     <table class="tab-signature">
         <tr>
-            <th class="presset_1" width="50%">LE(S) BAILLEURS</th>
-            <th class="presset_1">LE(S) LOCATAIRES</th>
+            <th class="presset_1 sign-header">LE(S) BAILLEURS</th>
+            <th class="presset_1 sign-header">LE(S) LOCATAIRES</th>
         </tr>
         <tr>
             <td><img src="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\public\uploads\media\signature\th.jpg" alt="bing"></td>
