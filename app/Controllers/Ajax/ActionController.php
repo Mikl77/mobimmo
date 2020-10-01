@@ -310,6 +310,18 @@ class ActionController extends Base_controller
 
                 // descriptif des etapes de creation
                 // - Recuperation et Validation des variables
+                $user = array(
+                    "id" => 1,
+                    "siret" =>"79219098500012",
+                    "name" => "Fly Academy Lognes",
+                    "email" => "contact@fly-academy.fr",
+                    "address" => "Aérodrome de Lognes Darse C \n Bâtiment 64 Boulevard du Courcerin",
+                    "zip"=>"77185",
+                    "city"=>"Lognes",
+                    "bank"=>"BANQUE POPULAIRE RIVES DE PARIS",
+                    "IBAN"=>"FR7610207000032121770433258",
+                    "BIC"=>"CCBPFRPPMTG"
+                );
                 // - Ajout en bdd
                 // - Creation du pdf
                 // - Archivage pdf
@@ -326,7 +338,7 @@ class ActionController extends Base_controller
 
                 $path = $this->container->get('settings')['pdf_upload_directory'];
 
-                $pdf = generatePdf($path,'my_doc1.pdf');
+                $pdf = generatePdf($path,'my_doc1.pdf',$user);
 
 
 

@@ -25,7 +25,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="" />
+    <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/Ajax/ActionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/Ajax/ActionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdf_templates/contracts/type1.php" beforeDir="false" afterPath="$PROJECT_DIR$/pdf_templates/contracts/type1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/pdf/my_doc1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/pdf/my_doc1.pdf" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +155,10 @@
       <workItem from="1601023043736" duration="162000" />
       <workItem from="1601023264344" duration="539000" />
       <workItem from="1601052431579" duration="109000" />
-      <workItem from="1601292707658" duration="4575000" />
+      <workItem from="1601292707658" duration="4912000" />
+      <workItem from="1601311304339" duration="1596000" />
+      <workItem from="1601380520372" duration="6126000" />
+      <workItem from="1601538962086" duration="10012000" />
     </task>
     <servers />
   </component>
@@ -185,10 +194,10 @@
       <screen x="72" y="27" width="1748" height="940" />
     </state>
     <state x="719" y="376" width="444" height="249" key="#Composer/72.27.1748.940@72.27.1748.940" timestamp="1600087849294" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1601296059348">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1601311892213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601296059348" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601311892213" />
     <state x="676" y="242" key="NewPhpClassDialog" timestamp="1601042000900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -201,10 +210,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601026943402" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601037947369">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601555844059">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601037947369" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601555844059" />
     <state x="682" y="356" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1601024947183">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
