@@ -310,17 +310,73 @@ class ActionController extends Base_controller
 
                 // descriptif des etapes de creation
                 // - Recuperation et Validation des variables
-                $user = array(
-                    "id" => 1,
-                    "siret" =>"79219098500012",
-                    "name" => "Fly Academy Lognes",
-                    "email" => "contact@fly-academy.fr",
-                    "address" => "Aérodrome de Lognes Darse C \n Bâtiment 64 Boulevard du Courcerin",
-                    "zip"=>"77185",
-                    "city"=>"Lognes",
-                    "bank"=>"BANQUE POPULAIRE RIVES DE PARIS",
-                    "IBAN"=>"FR7610207000032121770433258",
-                    "BIC"=>"CCBPFRPPMTG"
+                $variable = array(
+                    "lessor_name" => "Penhoat Mickael",
+                    "lessor_address" => "22 rue François Desportes, 77930 Chailly-en-bière, France",
+                    "client" => array(
+                        "1"=>array(
+                            "client_name"=>"Stein Cécile",
+                            "client_address"=>"22 rue François Desportes, 77930 Chailly-en-bière, France",
+                            "client_phone"=>"06 73 59 70 70",
+                            "client_pob"=>"Corbeil",
+                            "client_dob"=>"16/12/1986"),
+                        "2"=>array(
+                            "client_name"=>"Alhanati Fabien",
+                            "client_address"=>"17 route de Dampierre, Les choux, France",
+                            "client_phone"=>"06 06 06 06 05",
+                            "client_pob"=>"Montargis",
+                            "client_dob"=>"21/10/1987")
+                    ),
+                    "rent_hc"=>"1035",
+                    "charges"=>"65",
+                    "month_total"=>"1100",
+                    "security_deposit"=>"2070",
+                    "specials"=>array(
+                        "Q1"=>"Non",
+                        "Q2"=>"Non",
+                        "Q3"=>"Non",
+                        "Q4"=>"Non"
+                    ),
+                    "ref_rent"=>"17.00",
+                    "ref_rent_maj"=>"20.40",
+                    "accomodation"=>array(
+                        "designation"=>"Appartement avec cave et une place de parking en sous-sol.",
+                        "number_room"=>"2",
+                        "surface"=>"52",
+                        "address"=>"91 Rue Victor RECOURAT, 94170 Le Perreux-sur-Marne, IDF, France",
+                        "stage"=>"1",
+                        "cave_number"=>"A48",
+                        "parking_number"=>"A61",
+                        "building_type"=>"Immeuble collectif",
+                        "legal_status"=>"Copropriété",
+                        "building_year"=>"Après 1990",
+                        "heating"=>"Individuel",
+                        "water_heating"=>"Individuelle",
+                        "common_usage"=>array("Ascenseur","Interphone","Espaces_verts"),
+                        "contract_length"=>"1",
+                        "start_date"=>"01.08.2020",
+                        "end_date"=>"31.07.2021",
+                        "IRL"=>array(
+                            "time"=>"2ème trimestre 2020",
+                            "value"=>"130.57"
+                        ),
+                        "insurance"=>array(
+                            "name"=>"MACIF",
+                            "start_date"=>"30/07/2020",
+                            "end_date"=>"31/03/2021"
+                        )
+                    ),
+                    "warrantors"=>array(
+                        "1"=>array(
+                            "name"=>"Mr Olivier CHERET",
+                            "address"=>"103 Promenade des Golfeurs, Bussy-Saint-Georges, 77600, France"
+                        ),
+                        "2"=>array(
+                            "name"=>"Mr Hervé GUILLEMOT",
+                            "address"=>"22 Rue de l'Église, Vexin-sur-Epte, 27510, France"
+                        )
+                    ),
+                    "date"=>"01/08/2020"
                 );
                 // - Ajout en bdd
                 // - Creation du pdf
@@ -338,7 +394,7 @@ class ActionController extends Base_controller
 
                 $path = $this->container->get('settings')['pdf_upload_directory'];
 
-                $pdf = generatePdf($path,'my_doc1.pdf',$user);
+                $pdf = generatePdf($path,'my_doc1.pdf',$variable);
 
 
 

@@ -28,7 +28,7 @@
     .section-title {
         width: 100%;
         vertical-align: top;
-        margin-top: 65px;
+        margin-top: 35px;
     }
 
     .section-title-secondaire {
@@ -110,38 +110,43 @@
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3">Nom ou société :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['lessor_name'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Adresse :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['lessor_address'] ?></td>
         </tr>
     </table>
+    <br/><br/>
 
     <p>Dénommé(s) ci-après «LE BAILLEUR», (au singulier)</p>
 
     <p class="presset_1">LE(S) LOCATAIRE(S):</p>
 
     <!--ici une boucle sera a faire pour completer les tables ci dessous -->
+    <?php foreach ($variable['client'] as $client): ?>
 
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3">Nom :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $client['client_name'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Adresse :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $client['client_address'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Téléphone :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $client['client_phone'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Né(e) à :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $client['client_pob'] ?> le <?php echo $client['client_dob'] ?></td>
         </tr>
     </table>
+    <br/><br/>
+
+    <?php endforeach ?>
 
 
     <p>Dénommé(s) ci-après «LE LOCATAIRE», (au singulier)</p>
@@ -158,19 +163,19 @@
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3">Loyer hors charges :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['rent_hc'] ?>€</td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Provisions sur charges :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['charges'] ?>€</td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Total mensuel :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['month_total'] ?>€</td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Dépôt de garantie :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['security_deposit'] ?>€</td>
         </tr>
 
     </table>
@@ -178,20 +183,20 @@
     <p>Modalités particulières de fixation initiale du loyer applicables dans certaines zones tendues :</p>
 
     <p class="section-txtarea">
-    -	Le loyer du logement objet du présent contrat est soumis au décret fixant annuellement le montant maximum d'évolution des loyers à la relocation : Oui  Non. <br/>
-    -	Le loyer du logement objet du présent contrat est soumis au loyer de référence majoré fixé par arrêté préfectoral : Oui Non. <br/>
-    -	Le loyer du logement comprend un complément de loyer : Oui Non. <br/>
-    -	Le loyer fait-il objet d'une réévaluation : Oui Non. <br/>
+    -	Le loyer du logement objet du présent contrat est soumis au décret fixant annuellement le montant maximum d'évolution des loyers à la relocation : <?php echo $variable['specials']['Q1'] ?>. <br/>
+    -	Le loyer du logement objet du présent contrat est soumis au loyer de référence majoré fixé par arrêté préfectoral : <?php echo $variable['specials']['Q2'] ?>. <br/>
+    -	Le loyer du logement comprend un complément de loyer : <?php echo $variable['specials']['Q3'] ?>. <br/>
+    -	Le loyer fait-il objet d'une réévaluation : <?php echo $variable['specials']['Q4'] ?>. <br/>
     </p>
 
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3">Montant de loyer de référence :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['ref_rent'] ?>€/m2 </td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Montant de loyer de référence majoré :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['ref_rent_maj'] ?>€/m2</td>
         </tr>
     </table>
 
@@ -203,50 +208,52 @@
 
     <p class="presset_1">SITUATION, DESIGNATION ET CONSISTANCE DES LOCAUX :</p>
 
+    <p><?php echo $variable['accomodation']['designation'] ?></p>
+
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3"> Nombre de pièces :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['number_room'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Surface approximative :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['surface'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Adresse :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['address'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Etage :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['stage'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Cave n° :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['cave_number'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Parking n° :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['parking_number'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Type d'habitat :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['building_type'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Régime juridique de l'immeuble :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['legal_status'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Période de construction :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['building_year'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Modalités de production de chauffage :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['heating'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Modalités de production d'eau chaude sanitaire :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['water_heating'] ?></td>
         </tr>
 
     </table>
@@ -254,6 +261,11 @@
     <p class="presset_1">DESIGNATION DES PARTIES ET EQUIPEMENTS FAISANT L'OBJET D'UN USAGE COMMUN : </p>
 
     <!--ici liste des items a usage commun-->
+    <?php foreach ($variable['accomodation']['common_usage'] as $common_usage): ?>
+
+        <p>- <?php echo $common_usage ?></p>
+
+    <?php endforeach; ?>
 
     <p>Tels que ces locaux existent et tels que le LOCATAIRE déclare parfaitement les connaître pour les avoir vus et visités dès avant ce jour. Il reconnaît en outre, qu'ils sont en bon état d'usage et d'entretien et s'engage à les rendre comme tels en fin de jouissance.</p>
 
@@ -272,19 +284,19 @@
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3"> Durée de contrat :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['contract_length'] ?> an reconductible par tacite reconduction par période de : 1 an</td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Date de départ du bail :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['start_date'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3"> Date de fin de bail :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['end_date'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Indice de référence pour la révision du loyer :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['IRL']['time'] ?> Valeur : <?php echo $variable['accomodation']['IRL']['value'] ?> </td>
         </tr>
 
     </table>
@@ -300,15 +312,15 @@
     <table class="presset_2">
         <tr class="no-border">
             <td class="presset_3"> Assureur :</td>
-            <td>xxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['insurance']['name'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3">Date de souscription :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['insurance']['start_date'] ?></td>
         </tr>
         <tr class="no-border">
             <td class="presset_3"> Valable jusqu'au  :</td>
-            <td>xxxxxxxxxxxxxxxxxxx</td>
+            <td><?php echo $variable['accomodation']['insurance']['end_date'] ?></td>
         </tr>
     </table>
 
@@ -320,10 +332,26 @@
 
     <p>La présente location est garantie par les personnes désignées ci-dessous en qualité de caution :</p>
 
-    <!--todo  boucle avec les caution -->
+    <!--boucle avec les caution -->
+
+    <?php foreach ($variable['warrantors'] as $warrantor): ?>
+
+        <table class="presset_2">
+            <tr class="no-border">
+                <td class="presset_3">Nom :</td>
+                <td><?php echo $warrantor['name'] ?></td>
+            </tr>
+            <tr class="no-border">
+                <td class="presset_3">Adresse :</td>
+                <td><?php echo $warrantor['address'] ?></td>
+            </tr>
+        </table>
+        <br/><br/>
+
+    <?php endforeach; ?>
 
     <p>La caution se porte caution solidaire du locataire et renonce aux bénéfices de discussion et de division pour le paiement des loyers et des charges pour une durée indéterminée, à compter de la date de signature du bail. </p>
-    <p>Le montant du loyer mensuel s'élevant à la somme de <?php echo "xxxxxx" ?> euros.</p>
+    <p>Le montant du loyer mensuel s'élevant à la somme de <?php echo $variable['month_total'] ?> euros.</p>
     <p>Un exemplaire de l'engagement de la caution est annexé au présent bail.</p>
 
     <table class="section-title">
@@ -335,12 +363,12 @@
     <p class="presset_1">LE LOYER MENSUEL:</p>
 
     <p>Il est payable d'avance le 1er de chaque mois, soit au BAILLEUR, ou à la personne mandatée (s'il existe mandant de gestion entre le BAILLEUR et le mandataire, le paiement doit se faire exclusivement au mandataire).</p>
-    <p>Le loyer est de <?php echo "xxxxxx" ?>€ HORS CHARGES</p>
+    <p>Le loyer est de <?php echo $variable['rent_hc'] ?>€ HORS CHARGES</p>
 
     <p class="presset_1">LA REVISION DU LOYER ::</p>
 
     <p>Le loyer sera révisé automatiquement et de plein droit, en fonction de la variation de l'indice trimestriel de référence des loyers publié par l'INSEE ou de tout autre indice qui viendrait à lui être substitué chaque année le 1er août.</p>
-    <p>L'indice INSEE au jour des présentes est : <?php echo "xxxxxx" ?> <?php echo "xxxxxx" ?>.</p>
+    <p>L'indice INSEE au jour des présentes est : (<?php echo $variable['accomodation']['IRL']['time'] ?>)  <?php echo $variable['accomodation']['IRL']['value'] ?>.</p>
 
     <table class="section-title">
         <tr class="border">
@@ -350,7 +378,7 @@
 
     <p>En même temps et de la même façon que le loyer principal, le LOCATAIRE s'oblige à acquitter les charges, prestations et impositions récupérables mises à sa charge et découlant de la législation en vigueur et du présent bail, au prorata des millièmes de copropriété s'il existe un règlement de copropriété de l'immeuble dans lequel se trouvent les locaux loués, ou selon les modalités définies par un règlement intérieur dudit immeuble, ou tout autre état de répartition conforme au principe de répartition des copropriétés.
         Le paiement de ces charges donnera lieu au paiement de provisions ou forfait mensuelles justifiées par les résultats constatés par l'année précédente ou par l'état prévisionnel des dépenses pour l'année en cours.<br/>
-        Le montant provisionnel des charges mensuelles à la date de ce jour est de <?php echo "xxxxxx" ?>€.<br/>
+        Le montant provisionnel des charges mensuelles à la date de ce jour est de <?php echo $variable['rent_hc'] ?>€.<br/>
         Ce montant sera modifié et réajusté en fonction de l'évolution réelle du coût des charges.<br/>
         En cas de charges forfaitaires, ce forfait est révisé dans les mêmes conditions que le loyer principal.<br/>
         La régularisation s'opèrera chaque année, dans les conditions prévues à l'article 23 de la loi du 6 juillet 89. Les charges sont récupérables jusqu'à 3 ans en arrière.<br/></p>
@@ -361,7 +389,7 @@
         </tr>
     </table>
 
-    <p>Le dépôt de garantie correspond à maximum DEUX MOIS de loyer principal, hors charges, soit la somme de <?php echo "xxxxxx" ?>€.<br/>
+    <p>Le dépôt de garantie correspond à maximum DEUX MOIS de loyer principal, hors charges, soit la somme de <?php echo $variable['security_deposit'] ?>€.<br/>
         Cette somme sera restituée sans intérêt au LOCATAIRE en fin de bail et au plus tard dans un délai de<br/>
         -	1 mois si l'état des lieux de sortie est conforme à l'état des lieux d'entrée,<br/>
         -	2 mois si l'état des lieux de sortie révèle des différences avec l'état des lieux d'entrée,<br/>
@@ -513,7 +541,7 @@
         -	Extrait du règlement de copropriété concernant la destination de l'immeuble, la jouissance et l'usage des parties privatives et communes et précisant la quote-part afférente au lot loué dans chacune des catégories de charges.<br/>
     </p>
 
-    <p>Fait le : <?php echo "xxxxx"?></p>
+    <p>Fait le : <?php echo $variable['date'] ?></p>
 
     <table class="section-title">
         <tr class="border">
@@ -531,7 +559,5 @@
             <td><img src="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\public\uploads\media\signature\th1.jpg" alt="boum"></td>
         </tr>
     </table>
-
-
 
 </page>
