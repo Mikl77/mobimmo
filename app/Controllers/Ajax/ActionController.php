@@ -10,9 +10,9 @@ use App\Models\Client;
 use App\Models\Estate;
 use App\Models\FrPostalCode;
 use App\Models\In_Charge;
+use App\Models\Irl;
 use App\Models\Message;
 use App\Models\User;
-use App\Models\Users_in_relation;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -309,94 +309,112 @@ class ActionController extends Base_controller
             if ($_POST["action"] == "add_new_contract"){
 
                 // descriptif des etapes de creation
+
                 // - Recuperation et Validation des variables
-                $variable = array(
-                    "lessor_name" => "Penhoat Mickael",
-                    "lessor_address" => "22 rue François Desportes, 77930 Chailly-en-bière, France",
-                    "client" => array(
-                        "1"=>array(
-                            "client_name"=>"Stein Cécile",
-                            "client_address"=>"22 rue François Desportes, 77930 Chailly-en-bière, France",
-                            "client_phone"=>"06 73 59 70 70",
-                            "client_pob"=>"Corbeil",
-                            "client_dob"=>"16/12/1986"),
-                        "2"=>array(
-                            "client_name"=>"Alhanati Fabien",
-                            "client_address"=>"17 route de Dampierre, Les choux, France",
-                            "client_phone"=>"06 06 06 06 05",
-                            "client_pob"=>"Montargis",
-                            "client_dob"=>"21/10/1987")
-                    ),
-                    "rent_hc"=>"1035",
-                    "charges"=>"65",
-                    "month_total"=>"1100",
-                    "security_deposit"=>"2070",
-                    "specials"=>array(
-                        "Q1"=>"Non",
-                        "Q2"=>"Non",
-                        "Q3"=>"Non",
-                        "Q4"=>"Non"
-                    ),
-                    "ref_rent"=>"17.00",
-                    "ref_rent_maj"=>"20.40",
-                    "accomodation"=>array(
-                        "designation"=>"Appartement avec cave et une place de parking en sous-sol.",
-                        "number_room"=>"2",
-                        "surface"=>"52",
-                        "address"=>"91 Rue Victor RECOURAT, 94170 Le Perreux-sur-Marne, IDF, France",
-                        "stage"=>"1",
-                        "cave_number"=>"A48",
-                        "parking_number"=>"A61",
-                        "building_type"=>"Immeuble collectif",
-                        "legal_status"=>"Copropriété",
-                        "building_year"=>"Après 1990",
-                        "heating"=>"Individuel",
-                        "water_heating"=>"Individuelle",
-                        "common_usage"=>array("Ascenseur","Interphone","Espaces_verts"),
-                        "contract_length"=>"1",
-                        "start_date"=>"01.08.2020",
-                        "end_date"=>"31.07.2021",
-                        "IRL"=>array(
-                            "time"=>"2ème trimestre 2020",
-                            "value"=>"130.57"
-                        ),
-                        "insurance"=>array(
-                            "name"=>"MACIF",
-                            "start_date"=>"30/07/2020",
-                            "end_date"=>"31/03/2021"
-                        )
-                    ),
-                    "warrantors"=>array(
-                        "1"=>array(
-                            "name"=>"Mr Olivier CHERET",
-                            "address"=>"103 Promenade des Golfeurs, Bussy-Saint-Georges, 77600, France"
-                        ),
-                        "2"=>array(
-                            "name"=>"Mr Hervé GUILLEMOT",
-                            "address"=>"22 Rue de l'Église, Vexin-sur-Epte, 27510, France"
-                        )
-                    ),
-                    "date"=>"01/08/2020"
-                );
-                // - Ajout en bdd
+
                 // - Creation du pdf
-                // - Archivage pdf
-                // - Envoi des mails
+
+                // - Ajout en bdd
 
                 // -- Etape 1 -- Validation //
+                //$variable est la variable globale pour completer le contrat
+                $variable = [];
                 //todo Validation des elements recus
 
-                // -- Etape 2 -- Ajout en bdd //
-                //todo Ajout bdd
+                $estate = Estate::where('estate_id','=',$_POST['estate_id'])
+                    ->Leftjoin('building_type','estate_building_type_id','=','building_type.building_type_id')
+                    ->Leftjoin('legal_status','estate_legal_status_id','=','legal_status.legal_status_id')
+                    ->Leftjoin('building_year','estate_building_year_id','=','building_year.id')
+                    ->first();
 
-                // -- Etape 3 -- Creation pdf //
-                // En cours
+                $irl = Irl::latest()->first();
+
+                //cas du proprietaire bailleur
+                $owner = User::where('id',"=",$estate->estate_owner_id)->first();
+                //todo cas du bailleur non proprietaire
+
+                $client_list =  [];
+                foreach ($_POST['loca_list'] as $client){
+                    $user_desc = User::where('id','=',$client)->first();
+                    $date= new \DateTime($user_desc->user_dob);
+                    $details = [];
+                    $details['client_name'] = $user_desc->gender . ' ' .$user_desc->last_name . ' ' . $user_desc->first_name;
+                    $details['client_address'] = $user_desc->user_address_street . ', '. $user_desc->user_address_cp . ' ' . $user_desc->user_address_town . ', ' . $user_desc->user_country;
+                    $details['client_phone'] = $user_desc->user_main_phone; //todo formattage du telephone
+                    $details['client_pob'] = $user_desc->user_pob;
+                    $details['client_dob'] = $date->format('d-m-Y');
+                    array_push($client_list,$details);
+                }
+
+                // -- Etape 2 -- Creation pdf //
+
+                //Creation de la variable globale contenant toutes les informations pour le contrat
+
+                 $variable = array(
+                                    "lessor_name" => $owner->gender . ' ' .$owner->last_name . ' ' . $owner->first_name,
+                                    "lessor_address" => $owner->user_address_street . ', '. $owner->user_address_cp . ' ' . $owner->user_address_town . ', ' . $owner->user_country,
+                                    "client" => $client_list,
+                                    "rent_hc"=>$estate->current_rent,
+                                    "charges"=>$estate->current_charges,
+                                    "month_total"=>$estate->current_rent + $estate->current_charges,
+                                    "security_deposit"=>2*$estate->current_rent,
+                                    "specials"=>array(
+                                        "Q1"=>"Non",
+                                        "Q2"=>"Non",
+                                        "Q3"=>"Non",
+                                        "Q4"=>"Non"
+                                    ),
+                                    "ref_rent"=>"17.00",
+                                    "ref_rent_maj"=>"20.40",
+                                    "accomodation"=>array(
+                                        "designation"=>$estate->estate_description,
+                                        "number_room"=>$estate->number_of_rooms,
+                                        "surface"=>$estate->floor_space,
+                                        "address"=>$estate->estate_address . ' ' . $estate->estate_postal_code . ' ' . $estate->estate_town,
+                                        "stage"=>$estate->estate_stage,
+                                        "cave_number"=>$estate->estate_cave_number,
+                                        "parking_number"=>$estate->estate_parking_number,
+                                        "building_type"=>$estate->building_type_designation,
+                                        "legal_status"=>$estate->legal_status_designation,
+                                        "building_year"=>$estate->building_year_name,
+                                        "heating"=>"Individuel",
+                                        "water_heating"=>"Individuelle",
+                                        "common_usage"=>array("Ascenseur","Interphone","Espaces_verts"),
+                                        "contract_length"=>"1",
+                                        "start_date"=>"01.08.2020",
+                                        "end_date"=>"31.07.2021",
+                                        "IRL"=>array(
+                                            "time"=>$irl->irl_time,
+                                            "value"=>$irl->irl_value
+                                        ),
+                                        "insurance"=>array(
+                                            "name"=>"MACIF",
+                                            "start_date"=>"30/07/2020",
+                                            "end_date"=>"31/03/2021"
+                                        )
+                                    ),
+                                    "warrantors"=>array(
+                                        "1"=>array(
+                                            "name"=>"Mr Olivier CHERET",
+                                            "address"=>"103 Promenade des Golfeurs, Bussy-Saint-Georges, 77600, France"
+                                        ),
+                                        "2"=>array(
+                                            "name"=>"Mr Hervé GUILLEMOT",
+                                            "address"=>"22 Rue de l'Église, Vexin-sur-Epte, 27510, France"
+                                        )
+                                    ),
+                                    "date"=>"01/08/2020"
+                                );
 
                 $path = $this->container->get('settings')['pdf_upload_directory'];
 
                 $pdf = generatePdf($path,'my_doc1.pdf',$variable);
 
+                // -- Etape 2 -- Ajout en bdd //
+                //todo Ajout bdd
 
+                // - Archivage pdf
+                // - Envoi des mails
 
             }
 
