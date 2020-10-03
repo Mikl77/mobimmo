@@ -25,7 +25,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="" />
+    <list default="true" id="41c6b2f6-8488-4fd4-ada1-4e4f81db4a2d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/Contract/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/Contract/ContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/dist/js/admin_custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/js/admin_custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/header/script_admin.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/header/script_admin.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/menu/main_sidebar_admin.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/menu/main_sidebar_admin.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +117,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1hVDmxKiJFrwkUJXrR1Rj2iGUJ6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -120,7 +129,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/pages/contract" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -129,12 +138,13 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\app\Models" />
-      <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\app\App" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\resources\views\pages\contract" />
+      <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\app\Models" />
+      <recent name="C:\Users\Mickael\Documents\Projet_dev\mobimmo_dev\app\App" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -155,7 +165,8 @@
       <workItem from="1601380520372" duration="6126000" />
       <workItem from="1601538962086" duration="13452000" />
       <workItem from="1601622407539" duration="14202000" />
-      <workItem from="1601662333990" duration="3338000" />
+      <workItem from="1601662333990" duration="3441000" />
+      <workItem from="1601751445023" duration="6468000" />
     </task>
     <servers />
   </component>

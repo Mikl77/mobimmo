@@ -45,4 +45,12 @@ class ContractController
                     'estate_list'=>$estate_list,
                 ]);
         }
+
+        //Affichage du questionnaire pour etude de dossier
+    public function getForm(ServerRequestInterface $request, ResponseInterface $response){
+
+        return $this->view->render($response,'pages/contract/form_main.twig',[
+            'current_page'=>'form_main',
+        ]);
+    }
 }

@@ -92,6 +92,7 @@ $app->group('',function($route){
 
     $route->group('/contracts',function($route){
         $route->get('/new', ContractController::class . ':getContractMain')->setName('contract_main');
+        $route->get('/form', ContractController::class . ':getForm')->setName('form_main');
     });
 
 

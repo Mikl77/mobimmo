@@ -65,7 +65,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url_for('form_main') }}" class="nav-link {% if current_page == 'form_main' %}active"{% endif %}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Formulaires</p>
                             </a>

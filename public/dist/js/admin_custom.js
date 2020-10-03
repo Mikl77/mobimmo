@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
    //Cache la partie formulaire pour l ajout d un utilisateur le temps de la recherche du mail
    $('#add_client_form').hide();
    $('#mail_search_part').show();
@@ -450,7 +451,6 @@ $(document).ready(function () {
          }
       })
    })
-
 
 //derniere ligne
 })
